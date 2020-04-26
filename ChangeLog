@@ -1,0 +1,124 @@
+2010-08-29  Bill Poser  <poser@khunekcho.khunek>
+
+	* endian.c (Get_Endianness): 
+	Renamed endian.h to a2b_endian.h to avoid conflict with external endian.h
+
+2010-07-31  Bill Poser  <poser@khunekcho>
+
+	* binary2ascii.1, ascii2binary.1: 
+	Replaced pipe with comma as separator for short and long options.
+
+2008-10-06  Bill Poser  <poser@khunekcho.khunek.poser.org>
+
+	* ascii2binary.c: 
+	Updated copyright messages to GPL 3.
+
+2008-03-14  Bill Poser  <poser@khunekcho.khunek.poser.org>
+
+	* binary2ascii.c ascii2binary.c: 
+	Changed license to GPL v.3 and updated headers.
+	
+2007-02-12  Bill Poser  <poser@khunekcho.khunek.poser.org>
+
+	* MachineInfo.c (Print_Sizes): 
+	Added wchar_t.
+	Added maximim and minimum values.
+	Reformatted table.
+
+	*ascii2binary.c binary2ascii.c:
+	Miscellaneous code cleanup.
+
+2006-12-19  Bill Poser  <poser@khunekcho.khunek.poser.org>
+
+	* MachineInfo.c:
+	Now autoconfigured so that on machines with larger types
+	available it will report on them.
+
+2006-04-19  Bill Poser  <poser@S010600e0185aee1a.ca.shawcable.net>
+
+	* ascii2binary.1, binary2ascii.1: 
+	Added miscellaneous long options that had been omitted.
+
+2006-04-18  Bill Poser  <poser@S010600023f310f85.ca.shawcable.net>
+	
+	* binary2ascii.c:
+	The default value of Delimit_P is now 1. The flag -D|--do-not-delimit
+	was added. 
+
+	Floating point numbers are no longer zero-padded by default.
+
+	A new flag -Z disables zero padding.
+	
+	* ascii2binary.c, binary2ascii.c:
+	Both programs now have an optional 'L' flag, which species the locale.
+	This allows an ascii2binary | binary2ascii pipeline to be used to
+	convert numbers from the format appropriate for one locale to that
+	appropriate for another.
+
+	* ascii2binary.c, GetWord.c:
+	The thousands separator for the locale is now stripped
+	as the word is read, allowing delimited numeric strings
+	to be interpreted by strto(f|d|ld).
+
+2006-03-11  Bill Poser  <poser@S010600e0185aee1a.ca.shawcable.net>
+
+	* binary2ascii.c ascii2binary.c: 
+	Added GNU long options if supported.
+
+2006-03-08  Bill Poser  <poser@S010600e0185aee1a.ca.shawcable.net>
+
+	* binary2ascii.c: 
+	Added -l option, which causes a linefeed to be added after every 0x0A value
+	if the size is char, short, int, or long, that is, the sizes that might
+	represent a character.
+
+2006-03-03  Bill Poser  <poser@S010600e0185aee1a.ca.shawcable.net>
+
+	* GetWord.c: 
+	Replaced call to isspace with direct test for space, tab, NL, and CR
+	since under circumstances that I don't understand isspace sometimes
+	doesn't work. (And yes, I made sure I tested in the POSIX locale.)
+
+2006-03-03  Bill Poser  <poser@S010600023f310f85.ca.shawcable.net>
+
+	* binary2ascii.c: 
+	Added -d option for delimiting output as per locale.
+	Now allow precision of 0 that was incorrectly treated as an error.
+
+2005-09-12  Bill Poser  <poser@khunekcho.khunek.poser.org>
+
+	* ascii2binary.c: 
+	Added extern declaration of strtold. This declaration is missing
+	from stdlib.h when gcc is invoked normally because it is a C99
+	extension that is not a standard GNU extension.
+
+2005-09-11  Bill Poser  <poser@khunekcho.khunek.poser.org>
+
+	* ascii2binary.c (main): 
+	Added support for long double.
+
+	*binary2ascii.c (main): 
+	Added support for long double.
+
+	* MachineInfo.c (Print_Sizes): 
+	Added long double.
+
+2005-08-21  Bill Poser  <poser@khunekcho.khunek.poser.org>
+2.7
+Redid exit codes to reflect fine differences making
+programs more useful in scripts. Updated the documentation
+and French translation to reflect this.
+
+2.4
+-s now prints endianness as well as size information for both programs.
+
+2.3
+Internationalized. Added French translation.
+
+2.2
+Added ability to specify base symbolically as well as numerically to ascii2binary.
+Added ability to specify base numerically as well as symbolically to binary2ascii.
+Added warnings for incompatible options to binary2ascii.
+binary2ascii now defaults to prefixing '0x' to hexadecimal output. The -x flag
+	     now turns this off.
+

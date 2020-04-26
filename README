@@ -1,0 +1,7 @@
+These programs have been developed and tested under GNU/Linux. They should
+compile and run in any POSIX-compliant environment.
+
+They are meant to be compiled with gcc. They should compile with other compilers
+as well. However, note that some compilers do not support the long long
+type, so on some systems it may be necessary to install gcc rather than your
+usual compiler.

@@ -1,0 +1,130 @@
+.TH binary2ascii 1 "July, 2010"
+.SH NAME
+binary2ascii \- Convert binary numbers to textual representation
+.SH SYNOPSIS
+.B binary2ascii [flags]
+.SH DESCRIPTION
+.I binary2ascii
+reads input consisting of binary numbers and converts them to their textual representation.
+Command line flags specify the type and size of the binary numbers and provide control
+over the format of the output. Unsigned integers may be written out in binary, octal,
+decimal, or hexadecimal. Signed integers may be written out only in binary or decimal.
+Floating point numbers may be written out only in decimal, either in standard or
+scientific notation. (If you want to examine the binary representation of floating
+point numbers, just treat the input as a sequence of unsigned characters.)
+.SH COMMAND LINE FLAGS
+.PP
+Long options may not be available on some systems.
+.IP "-b,--base <base>"
+Base for integer conversions: b(binary),d(ecimal), h(exadecimal), o(ctal),
+or 2,8,10, or 16.
+.IP "-d,--delimit"
+Delimit the output as per the locale. This is the default on systems in which
+.I printf(3)
+supports delimitation. If delimitation is not enabled, floating point numbers will
+have a decimal point and no separation of groups, integers no delimiters at all. With this
+option, the decimal separator will be chosen according to the locale (which, for example,
+may make it a comma), and non-fractional digits will be grouped and separated according
+to the rules for the locale in force. For American English, this means groups of three digits
+separated by commas, whereas for German in Germany it means groups of three digits separated
+by periods.
+.IP "-D,--do-not-delimit"
+Do not delimit the output as per the 
+.I -d
+option.
+.IP "-e,--exponential"
+Use exponential (scientific) notation.
+.IP "-h,--help"
+print help message
+.IP "-l,--linefeed"
+add a linefeed after every 0x0A value if the size is char, short, int, or long,
+that is, the sizes that might represent a character.
+.IP "-L,locale <locale>"
+Set the LC_NUMERIC facet of the locale to <locale>.
+.IP "-n,--number <number>"
+number of items to print per line.
+.IP "-o,--offset <offset>"
+byte offset at which to start.
+.IP "-p,--precision <precision>"
+the precision to use when printing floating point numbers.
+.IP "-s,--sizes"
+print sizes of types on current machine and related information
+.IP "-t,--type <type>"
+set type and size of input
+.IP "-x,--no-hex-mark"
+do not mark hexadecimal output with the prefix 0x.
+.IP "-V,--verbose"
+be verbose.
+.IP "-v,--version"
+print version information.
+.IP "-w,--width"
+minimum field width.
+.IP "-X,--explain-exit-codes"
+print a summary of the exit status codes.
+.IP "-z,--zero-pad-integers"
+zero pad on left.
+.IP "-Z,--do-not-zero-pad-integers"
+do not zero pad on left
+.sp
+.SH INPUT TYPES
+.PP
+The following are the possible input types. Note that some types may not be
+available on some machines.
+
+d  double
+
+f  float
+
+q long double
+
+sc signed char
+
+ss signed short
+
+si signed int
+
+sl signed long
+
+sq signed long long
+
+uc unsigned char
+
+us unsigned short
+
+ui unsigned int
+
+ul unsigned long
+
+uq unsigned long long
+
+.SH EXIT STATUS
+.PP
+The following values are returned on exit:
+
+.IP "0 SUCCESS"
+The input was successfully converted.
+
+.IP "1 INFO"
+The user requested information such as the version number or usage synopsis
+and this has been provided.
+
+.IP "2 SYSTEM ERROR"
+An error resulted from a failure of the operating system such as
+an i/o error or inability to allocate storage.
+
+.IP "3 COMMAND LINE ERROR"
+The program was called with invalid or inconsistent command line flags.
+
+.IP "5 INPUT ERROR"
+This means that the input was ill-formed, that is that it could not
+be interpreted as a number of the required type. For example, if the input
+is 0x2A and a decimal value is called for,  an INPUT ERROR will be returned
+since 0x2A is not a valid representation of a decimal integer.
+
+.SH AUTHOR
+Bill Poser (billposer@alum.mit.edu)
+.SH LICENSE
+GNU General Public License, version 3
+.SH SEE ALSO
+ascii2binary(1)
+

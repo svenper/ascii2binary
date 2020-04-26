@@ -1,0 +1,21 @@
+2010-08-29 version 2.15
+Renamed endian.h to a2b_endian.h to avoid conflict with external endian.h.
+Replaced pipe with comma as separator for short and long options in man pages.
+
+2009-12-25 version 2.14
+The man page for binary2ascii has been clarified.
+
+2007-02-12 version 2.13
+The -s flag now provides more information, including the
+maximum and minimum values.
+
+2006-04-19
+ascii2binary can now handle thousands separators
+Locales can now be set from the command line for both programs.
+
+2005-11-29
+GNU autoconfiguration has been set up.
+An option was added to binary2ascii emit a newline after each 0x0A.
+
+2005-09-11
+Added support for long double.

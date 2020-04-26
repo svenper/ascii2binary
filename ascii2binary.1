@@ -1,0 +1,122 @@
+.TH ascii2binary 1 "July, 2010"
+.SH NAME
+ascii2binary \- Convert ASCII numbers to binary
+.SH SYNOPSIS
+.B ascii2binary [flags]
+.SH DESCRIPTION
+.I ascii2binary
+reads input consisting of a sequence of ASCII textual representations of numbers,
+separated by whitespace, and produces as output the binary equivalents.
+The type (unsigned integer, signed integer, or floating point number) and size
+of the binary output is selected by means of command line flags. The default is
+unsigned character.
+Input is checked both for format errors and to ensure that the number requested
+can be represented in a number of the requested binary type and size.
+.SH INPUT FORMAT
+The input formats supported are exactly those supported by
+.I strtod(3)
+for floating point numbers, by
+.I strtoll(3)
+for signed integers, and by
+.I strtoull(3)
+for unsigned integers, except that, unlike
+.I strtod(3)
+floating point numbers may have thousands separators.
+This means that by default integers may be decimal, octal, or hexadecimal, determined by
+the usual conventions. The command line flag
+.I -b
+may be used to specify another base for integer conversions.
+.SH COMMAND LINE FLAGS
+.PP
+Long options may not be available on some systems.
+
+.IP "-b,--base <base>"
+set base in range [2,36] for integer conversions. The base may be either an integer or:
+
+(b)binary
+
+(o)octal
+
+(d)ecimal
+
+(h)exadecimal.
+
+.IP -h,--help
+print help message
+.IP "-L,locale <locale>"
+Set the LC_NUMERIC facet of the locale to <locale>.
+.IP -s,--sizes
+print sizes of types on current machine and related information
+.IP "-t,--type <type>"
+set type and size of output
+
+The following are the possible output types. Note that some types may not be
+available on some machines.
+
+d  double
+
+f  float
+
+sc signed char
+
+ss signed short
+
+si signed int
+
+sl signed long
+
+sq signed long long
+
+uc unsigned char
+
+us unsigned short
+
+ui unsigned int
+
+ul unsigned long
+
+uq unsigned long long
+.IP "-v,--version"
+identify version
+.IP "-X,--explain-exit-codes"
+print a summary of the exit status codes.
+
+.SH EXIT STATUS
+.PP
+The following values are returned on exit:
+
+.IP "0 SUCCESS"
+The input was successfully converted.
+
+.IP "1 INFO"
+The user requested information such as the version number or usage synopsis
+and this has been provided.
+
+.IP "2 SYSTEM ERROR"
+An error resulted from a failure of the operating system such as
+an i/o error or inability to allocate storage.
+
+.IP "3 COMMAND LINE ERROR"
+The program was called with invalid or inconsistent command line flags.
+
+.IP "4 RANGE ERROR"
+This means that the input may be well-formed but cannot be represented
+as the required type. For example, if the input is the string 983 and
+ascii2binary is requested to convert this into an unsigned byte, ascii2binary
+will exit with a RANGE ERROR because 983 exceeds the maximum value representable in an
+unsigned byte, which is 255.
+
+.IP "5 INPUT ERROR"
+This means that the input was ill-formed, that is that it could not
+be interpreted as a number of the required type. For example, if the input
+is 0x2A and a decimal value is called for,  an INPUT ERROR will be returned
+since 0x2A is not a valid representation of a decimal integer.
+
+.SH AUTHOR
+Bill Poser (billposer@alum.mit.edu)
+.SH LICENSE
+GNU General Public License, version 3
+.SH SEE ALSO
+binary2ascii(1), strtod(3), strtoll(3), strtoull(3)
+
+
